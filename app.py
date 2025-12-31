@@ -5,7 +5,7 @@ import os
 import pandas as pd
 import streamlit as st
 
-st.title("セレクトビュー")
+st.title("人材情報分析 デモアプリ")
 
 # Load data
 df = pd.read_csv("data/members.csv")
