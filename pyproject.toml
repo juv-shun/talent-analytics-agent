@@ -1,16 +1,10 @@
 [project]
-name = "select-view-demo"
+name = "talent-analytics-agent"
 version = "0.1.0"
-description = "Add your description here"
+description = "人材分析用のAgent"
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = [
-    "boto3>=1.42.19",
-    "pandas>=2.3.3",
-    "streamlit>=1.52.2",
-]
+dependencies = ["boto3>=1.42.19", "pandas>=2.3.3", "streamlit>=1.52.2"]
 
 [dependency-groups]
-dev = [
-    "ruff>=0.14.10",
-]
+dev = ["ruff>=0.14.10"]
