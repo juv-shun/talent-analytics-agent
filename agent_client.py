@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 from typing import TYPE_CHECKING
 
 import boto3
@@ -10,8 +11,8 @@ import boto3
 if TYPE_CHECKING:
     from collections.abc import Generator
 
-AGENT_RUNTIME_ARN = "arn:aws:bedrock-agentcore:ap-northeast-1:100994446770:runtime/data_analyst-JdXi8kEIuv"
-S3_PATH = "s3://juv-shun.data-analyst-agent-trial/data/members.csv"
+AGENT_RUNTIME_ARN = os.environ["AGENT_RUNTIME_ARN"]
+S3_PATH = os.environ["S3_PATH"]
 
 
 def invoke_streaming(prompt: str) -> Generator[str]:
