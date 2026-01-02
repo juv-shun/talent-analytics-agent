@@ -49,7 +49,7 @@ def invoke_streaming(prompt: str) -> Generator[str]:
         )
 
         streaming_body = response["response"]
-        for chunk in streaming_body.iter_lines(chunk_size=10):
+        for chunk in streaming_body.iter_lines(chunk_size=1):
             if chunk:
                 yield json.loads(chunk.decode("utf-8").removeprefix("data: "))
 
