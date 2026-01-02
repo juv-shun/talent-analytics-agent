@@ -49,18 +49,9 @@ def invoke_streaming(prompt: str) -> Generator[str]:
         )
 
         streaming_body = response["response"]
-        for chunk in streaming_body.iter_lines():
+        for chunk in streaming_body.iter_lines(chunk_size=10):
             if chunk:
-                line = chunk.decode("utf-8").removeprefix("data: ")
-                try:
-                    data = json.loads(line)
-                    if isinstance(data, dict) and "event" in data:
-                        event = data["event"]
-                        if "contentBlockDelta" in event:
-                            text = event["contentBlockDelta"]["delta"].get("text", "")
-                            if text:
-                                yield text
-                except (json.JSONDecodeError, TypeError, KeyError):
-                    pass
+                yield json.loads(chunk.decode("utf-8").removeprefix("data: "))
+
     except Exception as e:  # noqa: BLE001
         yield f"実行エラー: {e!s}"
